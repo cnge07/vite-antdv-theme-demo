@@ -28,24 +28,18 @@ const themes = ref([
 const handleChangeTheme = (n: string) => {
   const hide = message.loading('正在切换主题...', 0);
   if (themes.value.findIndex(v => v.theme === n) > 1) {
-    let tagId = `${CLIENT_TAG_ID}${n}`
-    let link = document.getElementById(tagId) as HTMLLinkElement
+    let link = document.getElementById(CLIENT_TAG_ID) as HTMLLinkElement
     if (!link) {
       link = document.createElement('link')
       link.rel = 'stylesheet'
-      link.id = tagId
+      link.id = CLIENT_TAG_ID
       document.head.appendChild(link)
-      link.onload = () => {
-        hide()
-      }
     }
     link.href = `/themes/${n}.css`
-  } else {
-    setTimeout(hide, 500);
   }
   document.documentElement.dataset.theme = n
   theme.value = n
-
+  setTimeout(hide, 2000);
 }
 </script>
 
