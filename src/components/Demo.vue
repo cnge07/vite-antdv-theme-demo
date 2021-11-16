@@ -37,9 +37,11 @@ const handleChangeTheme = (n: string) => {
     }
     link.href = `/themes/${n}.css`
   }
-  document.documentElement.dataset.theme = n
-  theme.value = n
-  setTimeout(hide, 2000);
+  setTimeout(() => {
+    theme.value = n
+    document.documentElement.dataset.theme = n
+    hide()
+  }, 2000);
 }
 </script>
 
